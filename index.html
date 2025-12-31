@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New CSS Features Showcase + Codes</title>
+    <meta
+      name="description"
+      content="A showcase of new CSS features including subgrid, scroll snap, variable fonts, color functions and more. Also includes code snippets for experimentation and learning."
+    />
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <link rel="icon" href="assets/images/favicon.svg" />
+  </head>
+
+  <body>
+    <aside class="content-sidebar">
+      <details class="content-table" open>
+        <summary>Table of Contents</summary>
+        <ol>
+          <li><a href="#container-queries">Container Queries</a></li>
+          <li><a href="#scroll-driven">Scroll Driven Animations</a></li>
+          <li><a href="#nested">Nested Classes</a></li>
+          <li><a href="#property">Property</a></li>
+          <li><a href="#subgrid">Subgrid</a></li>
+          <li><a href="#variable-fonts">Variable Fonts</a></li>
+          <li><a href="#layer">@layer</a></li>
+          <li><a href="#snap">Scroll Snap</a></li>
+          <li><a href="#color-functions">Color Functions</a></li>
+          <li><a href="#interpolate-size">Interpolate Size</a></li>
+          <li><a href="#lightdark">Light-Dark Function</a></li>
+          <li><a href="#corner-shapes">Corner Shapes</a></li>
+          <li><a href="#shape-function">Shape() Function</a></li>
+          <li><a href="#custom-selects">Custom Selects</a></li>
+          <li><a href="#sibling-index">Sibling-Index()</a></li>
+          <li><a href="#if-function">If() Function</a></li>
+          <li><a href="#custom-functions">CSS Custom Functions</a></li>
+          <li><a href="#anchor-positioning">Anchor Positioning</a></li>
+          <li><a href="#text-wrap-balance">Text-wrap: balance</a></li>
+          <li><a href="#field-sizing">Field-sizing</a></li>
+        </ol>
+      </details>
+    </aside>
+
+    <main class="main-content">
+      <h1>Top New CSS Features showcase</h1>
+      <p>
+        It's important to keep in mind that this page serves as a learning
+        resource and demonstration of new CSS features. To ensure proper
+        functioning and cross-browser compatibility, it's always recommended to
+        consider fallbacks. View this page using the latest version of Chrome
+        for the best learning experience.
+      </p>
+
+      <h3 id="container-queries">1. resize and container queries</h3>
+      <p>Dynamic styles based on container instead of the whole window.</p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-container-queries"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CSS container queries</a
+        >
+      </div>
+      <div class="row">
+        <aside class="resizable blue container">
+          <p class="child">
+            I'm a child and i become strong when my parent is bigger!
+          </p>
+        </aside>
+        <main class="red"></main>
+      </div>
+
+      <pre>
+        <code>
+        .resizable {
+          resize: horizontal;
+          overflow: auto;
+        }
+
+        .container {
+          container-type: inline-size;
+          padding: 1rem;
+        }
+        
+        @container (min-width: 400px) {
+          .child {
+            font-weight: bolder;
+          }
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="scroll-driven">2. scroll and view driven animations</h3>
+      <p>
+        Makes gradual animations based on scroll or the element being visible or
+        not possible. superior performance to JS based solutions.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-scroll-timeline"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CSS scroll-driven animations</a
+        >
+        <a
+          href="https://caniuse.com/mdn-css_properties_animation-timeline"
+          target="_blank"
+          rel="noopener noreferrer"
+          >animation-timeline property</a
+        >
+      </div>
+
+      <div class="animated-box"></div>
+
+      <pre>
+        <code>
+          @keyframes fadeInRotate {
+            from {
+              opacity: 0;
+              transform: scale(0) rotate(-180deg) translateX(200%);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1) rotate(0deg) translateX(0%);
+            }
+          }
+
+          .animated-box {
+            animation: fadeInRotate linear both;
+            animation-timeline: view();
+            animation-range: 25vh 75vh;
+          }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="nested">
+        3. nested classes (&) - :has parent selector and user-valid/invalid
+      </h3>
+      <p>
+        the styles are apllied only if the user has at least interacted with the
+        input for once and has unfocused it thanks to the new user-valid and
+        user-invalid pseudo classes.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-nesting"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CSS nesting</a
+        >
+        <a
+          href="https://caniuse.com/css-has"
+          target="_blank"
+          rel="noopener noreferrer"
+          >:has() selector</a
+        >
+        <a
+          href="https://caniuse.com/mdn-css_selectors_user-valid"
+          target="_blank"
+          rel="noopener noreferrer"
+          >:user-valid / :user-invalid</a
+        >
+      </div>
+
+      <div class="card">
+        <p class="card-title">
+          Handling 3 input states using CSS 'has' and user-valid/invalid.
+        </p>
+
+        <input type="email" id="emailInput" placeholder="Email" required />
+      </div>
+
+      <pre>
+        <code>
+        .card {
+          /* other styles */
+          
+          &:has(input:user-invalid) {
+            background-color: lightpink;
+          }
+          
+          &:has(input:user-valid) {
+            background-color: lightgreen;
+          }
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="property">4. @propery CSS variables</h3>
+      <p>
+        More detailed variables. unlike regular variables has type checking,
+        defaults and inheritence
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_at-rules_property"
+          target="_blank"
+          rel="noopener noreferrer"
+          >@property at-rule</a
+        >
+      </div>
+
+      <p class="text-primary">
+        This is a primary text with propery variable color!
+      </p>
+
+      <pre>
+        <code>
+        @property --primary-color {
+          syntax: '&lt;color&gt;';
+          initial-value: #5a62f8;
+          inherits: false;
+        }
+        
+        .text-primary {
+          color: var(--primary-color);
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="subgrid">5. subgrid</h3>
+      <p>
+        Subgrid makes it possible for grid items to have grid display which
+        enables grid shareability and nested grids to align to ancestors and
+        siblings.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-subgrid"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CSS subgrid</a
+        >
+      </div>
+
+      <div class="grid">
+        <div class="item">
+          grid item
+          <div class="subitem">subgrid item</div>
+        </div>
+      </div>
+
+      <pre>
+        <code>
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(9, 1fr);
+          grid-template-rows: repeat(4, minmax(6.25rem, auto));
+        }
+        
+        .item {
+          display: grid;
+          grid-column: 2 / 7;
+          grid-row: 2 / 4;
+          grid-template-columns: subgrid;
+          grid-template-rows: repeat(3, 5rem);
+        }
+        
+        .subitem {
+          grid-column: 3 / 6;
+          grid-row: 1 / 3;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="variable-fonts">6. variable fonts</h3>
+      <p>
+        Variable fonts are an evolution of the OpenType font specification that
+        enables many different variations of a typeface to be incorporated into
+        a single file, rather than having a separate font file for every width,
+        weight, or style.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/variable-fonts"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Variable fonts</a
+        >
+      </div>
+
+      <p class="text-bold">This is a text with variable bold font</p>
+      <p class="text-bolder">This is a text with variable bolder font</p>
+      <p class="text-light">This is a text with variable light font</p>
+      <p class="text-italic">This is a text with variable italic font</p>
+
+      <pre>
+        <code>
+        .text-bold {
+          font-variation-settings: 'wght' 700;
+        }
+        
+        .text-light {
+          font-variation-settings: 'wght' 200;
+        }
+        
+        .text-bolder {
+          font-variation-settings: 'wght' 900;
+        }
+
+        .text-italic {
+          font-variation-settings: 'ital' 1;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="layer">7. @layer</h3>
+
+      <p>
+        The @layer rule in CSS is a feature that allows developers to define
+        layers of styles in their stylesheets.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-cascade-layers"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CSS cascade layers</a
+        >
+      </div>
+
+      <pre>
+        <code>
+        /* specify exact cascading order */
+        @layer bgblue, bgpink;
+
+        /* layer 1 */
+        @layer bgpink {
+          body {
+            background: pink; /* wins */
+          }
+        }
+
+        /* layer 2 */
+        @layer bgblue {
+          body {
+            background: lightblue;
+          }
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="snap">8. Scroll Snap</h3>
+      <p>
+        Scroll Snap allows you to create smooth scrolling experiences by
+        snapping scroll positions to specific points within a scroll container
+        (shift + scroll in PC).
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-snappoints"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CSS Scroll Snap</a
+        >
+      </div>
+
+      <div class="scroll-snap-container">
+        <div class="scroll-snap-item">Item 1</div>
+        <div class="scroll-snap-item">Item 2</div>
+        <div class="scroll-snap-item">Item 3</div>
+        <div class="scroll-snap-item">Item 4</div>
+        <div class="scroll-snap-item">Item 5</div>
+      </div>
+
+      <pre>
+        <code>
+        .scroll-snap-container {
+          overflow-x: scroll;
+          white-space: nowrap;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          max-width: 18.75rem;
+        }
+        
+        .scroll-snap-item {
+          display: inline-block;
+          width: 18.75rem;
+          height: 12.5rem;
+          scroll-snap-align: start;
+          /* other styles */
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="color-functions" class="color-functions">
+        9. color and color-mix functions
+      </h3>
+      <p>
+        The color() function is used to create colors based on color spaces
+        (like sRGB, Display-P3, etc.). The color-mix() function allows you to
+        blend two colors together by specifying a color space and a ratio.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-color-function"
+          target="_blank"
+          rel="noopener noreferrer"
+          >color() function</a
+        >
+        <a
+          href="https://caniuse.com/mdn-css_types_color_color-mix"
+          target="_blank"
+          rel="noopener noreferrer"
+          >color-mix() function</a
+        >
+      </div>
+
+      <div class="row">
+        <div class="srgb-box"></div>
+        <div class="red-blue-mix-box"></div>
+      </div>
+
+      <pre>
+        <code>
+        .srgb-box {
+          background-color: color(srgb 0.1 0.5 0.8);
+        }
+        
+        .red-blue-mix-box {
+          background-color: color-mix(in srgb, red 50%, blue 50%);
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="interpolate-size">
+        10. Animating Auto sizes with interpolate-size
+      </h3>
+      <p>
+        Once a significant and annoying challenge in CSS, Animating Auto sizes
+        like auto hight is now possible using
+        <span class="text-italic">interpolate-size</span>.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_properties_interpolate-size"
+          target="_blank"
+          rel="noopener noreferrer"
+          >interpolate-size property</a
+        >
+      </div>
+
+      <div class="animated-collapse-box">
+        <ul>
+          <li>Hover to smoothly collapse</li>
+          <li>Hover to smoothly collapse</li>
+          <li>Hover to smoothly collapse</li>
+          <li>Hover to smoothly collapse</li>
+          <li>Hover to smoothly collapse</li>
+          <li>Hover to smoothly collapse</li>
+          <li>Hover to smoothly collapse</li>
+        </ul>
+      </div>
+
+      <pre>
+        <code>
+        :root {
+          interpolate-size: allow-keywords;
+        }
+
+        .animated-collapse-box {
+          /* other styles */
+          height: 3.125rem;
+          overflow: hidden;
+          transition: height ease 1s;
+          
+          &:hover {
+            height: auto;
+            text-overflow: unset;
+            white-space: wrap;
+          }
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="lightdark">11. light-dark function</h3>
+      <p>
+        light-dark() function is a new and simpler alternative to
+        @prefers-color-scheme media query to specify styles of different
+        elements for dark ad light mode. it only works if color-scheme is set.
+        this feature is used allover this page!
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_types_color_light-dark"
+          target="_blank"
+          rel="noopener noreferrer"
+          >light-dark() function</a
+        >
+      </div>
+
+      <div class="light-dark-box">
+        <p>
+          this div is white if your OS settings is light and black if it's dark!
+        </p>
+      </div>
+
+      <pre>
+        <code>
+        :root {
+          color-scheme: light dark;
+          --light-bg: snow;
+          --light-color: black;
+          --dark-bg: black;
+          --dark-color: snow;
+        }
+        
+        .light-dark-box {
+          background-color: light-dark(var(--light-bg), var(--dark-bg));
+          color: light-dark(var(--light-color), var(--dark-color));
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="corner-shapes">12. Corner Shapes (corner-shape)</h3>
+      <p>
+        Lets you define non-rectangular corner styles (e.g., scoop, notch,
+        squircle) beyond simple border-radius.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_properties_corner-shape"
+          target="_blank"
+          rel="noopener noreferrer"
+          >corner-shape property</a
+        >
+      </div>
+
+      <div class="corner-shape-card">CSS Corner Shape</div>
+
+      <pre>
+        <code>
+        .corner-shape-card {
+          width: 12.5rem;
+          height: 7.5rem;
+          background: #4CAF50;
+          border-radius: 1.875rem;
+          corner-shape: scoop notch;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="shape-function">13. shape() Function with clip-path</h3>
+      <p>
+        The new shape() replaces older path() syntax for more intuitive shape
+        definitions using CSS. You can define shapes for clipping or motion
+        paths.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_types_basic-shape_shape"
+          target="_blank"
+          rel="noopener noreferrer"
+          >shape() function</a
+        >
+      </div>
+
+      <div class="shape-examples">
+        <div id="clip-triangle">Triangle Clip</div>
+        <div class="shape-animation-container">
+          <div class="shape-animated"></div>
+        </div>
+      </div>
+
+      <pre>
+        <code>
+        #clip-triangle {
+          width: 11.25rem;
+          height: 11.25rem;
+          background: teal;
+          clip-path: shape(
+            from 0 0,
+            line to 11.25rem 0,
+            line to 5.625rem 11.25rem,
+            close
+          );
+        }
+
+        .shape-animated {
+          width: 2.5rem;
+          height: 2.5rem;
+          background: salmon;
+          position: absolute;
+          offset-path: shape(
+            from 0 0,
+            hline by 6.25rem,
+            vline by 6.25rem,
+            close
+          );
+          animation: moveShape 4s infinite linear;
+        }
+
+        @keyframes moveShape {
+          0% { offset-distance: 0%; }
+          100% { offset-distance: 100%; }
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="custom-selects">14. Custom Selects (appearance: base-select)</h3>
+      <p>
+        Chromium browsers now support rich select styling with appearance:
+        base-select, plus pseudo-elements like ::picker, ::picker-icon, :open,
+        and :checked.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_properties_appearance_base-select"
+          target="_blank"
+          rel="noopener noreferrer"
+          >appearance: base-select</a
+        >
+      </div>
+
+      <select class="custom-select">
+        <option>Option A</option>
+        <option>Option B</option>
+        <option>Option C</option>
+      </select>
+
+      <pre>
+        <code>
+        .custom-select,
+        .custom-select::picker(select) {
+          appearance: base-select;
+          padding: 0.5em;
+          border: 0.125rem solid #444;
+          border-radius: 0.5rem;
+        }
+
+        .custom-select::picker-icon {
+          color: #444;
+          font-size: 1.2em;
+          transition: rotate 0.3s ease;
+        }
+
+        .custom-select:open::picker-icon {
+          rotate: 180deg;
+        }
+
+        .custom-select::picker(select) option:checked {
+          background: #222;
+          color: white;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="sibling-index">15. sibling-index() Function</h3>
+      <p>
+        Returns an integer representing an element's position among its siblings
+        — useful for sequenced styles or animations.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_types_sibling-index"
+          target="_blank"
+          rel="noopener noreferrer"
+          >sibling-index() function</a
+        >
+      </div>
+
+      <ul class="sibling-steps">
+        <li>Step One</li>
+        <li>Step Two</li>
+        <li>Step Three</li>
+        <li>Step Four</li>
+      </ul>
+
+      <pre>
+        <code>
+        .sibling-steps li {
+          width: calc(sibling-index() * 3.75rem);
+          background: hsl(calc(90 * (sibling-index() - 1)), 70%, 60%);
+          color: white;
+          padding: 0.5em;
+          margin-bottom: 0.5em;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="if-function">16. if() Function (CSS Conditionals)</h3>
+      <p>
+        Real conditional logic inside property values — similar to if in
+        programming.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-if"
+          target="_blank"
+          rel="noopener noreferrer"
+          >if() function</a
+        >
+      </div>
+
+      <div class="responsive-if">Conditional CSS with if()</div>
+      <div class="color-test-if">Feature-based Color</div>
+
+      <pre>
+        <code>
+        .responsive-if {
+          padding: if(
+            media(width < 500px): 0.5rem;
+            else: 1.25rem
+          );
+          background: lightgoldenrodyellow;
+        }
+
+        .color-test-if {
+          color: if(
+            supports(color: oklch(50% 0.2 180)): oklch(50% 0.2 180);
+            else: #333
+          );
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="custom-functions">17. CSS Custom Functions (@function)</h3>
+      <p>
+        Write reusable logic blocks in CSS — similar to functions in languages
+        like Sass but native.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_at-rules_function"
+          target="_blank"
+          rel="noopener noreferrer"
+          >@function rule</a
+        >
+      </div>
+
+      <div class="custom-func-box">Custom Function Box</div>
+      <div class="theme-box">Theme Box</div>
+
+      <pre>
+        <code>
+        @function --half-size(--value) {
+          result: calc(var(--value) / 2);
+        }
+
+        .custom-func-box {
+          --size: 6.25rem;
+          width: --half-size(var(--size));
+          height: --half-size(var(--size));
+          background: coral;
+        }
+
+        @function --theme-color() {
+          result: if(
+            style(--dark-mode: true): #222;
+            else: #eee
+          );
+        }
+
+        .theme-box {
+          background: --theme-color();
+          padding: 1rem;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="anchor-positioning">18. CSS Anchor Positioning</h3>
+      <p>
+        Anchor positioning allows you to position elements relative to other
+        elements (anchors) anywhere on the page, perfect for tooltips, popovers,
+        and dropdowns without JavaScript calculations.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/css-anchor-positioning"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CSS anchor positioning</a
+        >
+      </div>
+
+      <button class="anchor-button" id="anchorBtn">Hover for Tooltip</button>
+      <div class="tooltip" id="anchoredTooltip">
+        I'm anchored to the button!
+      </div>
+
+      <pre>
+        <code>
+        .anchor-button {
+          anchor-name: --my-anchor;
+        }
+
+        .tooltip {
+          position: absolute;
+          position-anchor: --my-anchor;
+          bottom: anchor(top);
+          left: anchor(center);
+          translate: -50% 0;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="text-wrap-balance">19. text-wrap: balance</h3>
+      <p>
+        Automatically balances text across multiple lines for better typography,
+        especially useful for headlines and titles to avoid awkward line breaks.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_properties_text-wrap_balance"
+          target="_blank"
+          rel="noopener noreferrer"
+          >text-wrap: balance</a
+        >
+      </div>
+
+      <div class="balance-demo">
+        <h4 class="unbalanced">
+          This is a long headline that might break awkwardly without balance
+        </h4>
+        <h4 class="balanced">
+          This is a long headline that might break awkwardly without balance
+        </h4>
+      </div>
+
+      <pre>
+        <code>
+        .unbalanced {
+          text-wrap: wrap;
+        }
+
+        .balanced {
+          text-wrap: balance;
+        }
+        </code>
+      </pre>
+
+      <hr />
+
+      <h3 id="field-sizing">20. field-sizing: content</h3>
+      <p>
+        Allows form inputs and textareas to automatically size themselves based
+        on their content, eliminating the need for JavaScript-based auto-resize
+        solutions.
+      </p>
+      <div class="support-links">
+        <strong>Browser support:</strong>
+        <a
+          href="https://caniuse.com/mdn-css_properties_field-sizing"
+          target="_blank"
+          rel="noopener noreferrer"
+          >field-sizing property</a
+        >
+      </div>
+
+      <textarea
+        class="auto-resize-textarea"
+        placeholder="Type here and watch me grow..."
+      ></textarea>
+
+      <pre>
+        <code>
+        .auto-resize-textarea {
+          field-sizing: content;
+          min-height: 3rem;
+          max-height: 15rem;
+          width: 100%;
+          max-width: 25rem;
+        }
+        </code>
+      </pre>
+    </main>
+  </body>
+</html>

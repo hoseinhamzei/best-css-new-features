@@ -1,0 +1,28 @@
+/* ignore linting warnings as some of these features are still experimental */
+
+/* variables */
+:root {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+  interpolate-size: allow-keywords;
+  --light-bg: snow;
+  --light-color: black;
+  --dark-bg: black;
+  --dark-color: snow;
+  --primary: #19b0e8;
+  --secondary: #1986ab;
+  --accent: tomato;
+  --success: lightgreen;
+  --warning: #fff4d6;
+  --error: tomato;
+  --surface: white;
+  --surface-dark: #5b5d5f;
+  --background: #eefffa;
+  --background-dark: #5e5a5a;
+  --border: #ccc;
+  --text: black;
+  --text-dark: snow;
+  --text-inverse: white;
+  --code-bg: #464242;
+  --code-color: whitesmoke;
+}
