@@ -85,7 +85,7 @@
 /* propery variables */
 @property --primary-color {
   syntax: "<color>";
-  initial-value: var(--primary);
+  initial-value: #5a62f8;
   inherits: false;
 }
 
