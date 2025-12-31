@@ -4,7 +4,7 @@ A comprehensive showcase of modern CSS features with live demos and code example
 
 ## Links
 
-- **Live Demo**: [https://github.com/hoseinhamzei/best-css-new-features](https://github.com/hoseinhamzei/best-css-new-features)
+- **Live Demo**: [https://hoseinhamzei.github.io/best-css-new-features/](https://hoseinhamzei.github.io/best-css-new-features/)
 - **Blog Post**: [Top 20 New Game-Changing CSS Features](https://hoseinh.com/portfolio/posts/top-20-new-game-changing-css-features)
 
 ## Features Covered
