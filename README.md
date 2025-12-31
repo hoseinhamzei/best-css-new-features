@@ -2,12 +2,12 @@
 
 A comprehensive showcase of modern CSS features with live demos and code examples.
 
-## 🔗 Links
+## Links
 
 - **Live Demo**: [https://github.com/hoseinhamzei/best-css-new-features](https://github.com/hoseinhamzei/best-css-new-features)
 - **Blog Post**: [Top 20 New Game-Changing CSS Features](https://hoseinh.com/portfolio/posts/top-20-new-game-changing-css-features)
 
-## 📋 Features Covered
+## Features Covered
 
 This project demonstrates 20 cutting-edge CSS features:
 
@@ -32,11 +32,7 @@ This project demonstrates 20 cutting-edge CSS features:
 19. `text-wrap: balance`
 20. `field-sizing: content`
 
-## 🚀 Getting Started
-
-Simply open `index.html` in your browser. For the best experience, use the latest version of Chrome.
-
-## 📖 Documentation
+## Documentation
 
 Each feature includes:
 - Live interactive demo
@@ -45,14 +41,8 @@ Each feature includes:
 
 For detailed explanations of each feature, check out the [blog post](https://hoseinh.com/portfolio/posts/top-20-new-game-changing-css-features).
 
-## 👤 Author
 
-Created by [Hosein Hamzenejadi](https://hoseinh.com/portfolio)
-
-## ⚠️ Browser Compatibility
+## Browser Compatibility
 
 This showcase uses cutting-edge CSS features. Some features may not work in all browsers. For the best learning experience, view this page using the latest version of Chrome.
 
-## 📄 License
-
-Feel free to use this project for learning and reference purposes.
